@@ -19,6 +19,8 @@ type DisputeItem = {
     memo?: string | null;
   };
 };
+type ResolutionResult = "reexecute_approved" | "refund_approved" | "rejected";
+
 
 const ADMIN_KEY =
   process.env.NEXT_PUBLIC_ADMIN_KEY || "dev-admin-key";
@@ -74,7 +76,7 @@ export default function AdminPage() {
     }
   }
 
-  async function resolve(disputeId: string, result: DisputeItem["resolution"]["result"]) {
+  async function resolve(disputeId: string, result: ResolutionResult) {
     const memo = window.prompt("처리 메모(선택)를 입력하세요. 비워도 됩니다.") || "";
 
     try {
